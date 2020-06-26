@@ -1,9 +1,10 @@
 [![Node.js and MongoDB on Sails.js/Waterline](https://camo.githubusercontent.com/9e49073459ed4e0e2687b80eaf515d87b0da4a6b/687474703a2f2f62616c64657264617368792e6769746875622e696f2f7361696c732f696d616765732f6c6f676f2e706e67)](http://sailsjs.com)
 
-# sails-mongo
+# @adoric/sails-mongo
 
 Sails.js/Waterline adapter for MongoDB. (See [compatibility](#compatibility) for more details.)
 
+> Support transactions API
 > Provides easy access to MongoDB from Sails.js & Waterline.
 > This module is a Sails/Waterline adapter maintained by the core team.  Its goal is to provide robust, easy-to-use access to MongoDB from Sails.js and Waterline.
 >
@@ -29,7 +30,6 @@ Example works with Native MongoDb
 
 ```
   const { manager } = sails.getDatastore(datastoreName);
-
   const { client } = manager;
 
   // Step 1: Start a Client Session
@@ -94,14 +94,6 @@ This adapter implements the following methods:
 
 See [Extending Sails > Adapters > Custom Adapters](http://sailsjs.com/documentation/concepts/extending-sails/adapters/custom-adapters) in the [Sails documentation](http://sailsjs.com/documentation), or check out [recommended support options](http://sailsjs.com/support).
 
-
-## Contributing &nbsp; [![Build Status](https://travis-ci.org/balderdashy/sails-mongo.svg?branch=master)](https://travis-ci.org/balderdashy/sails-mongo) &nbsp; [![Build status on Windows](https://ci.appveyor.com/api/projects/status/u0i1o62tsw6ymbjd/branch/master?svg=true)](https://ci.appveyor.com/project/mikermcneil/sails-mongo/branch/master)
-
-Please observe the guidelines and conventions laid out in the [Sails project contribution guide](http://sailsjs.com/documentation/contributing) when opening issues or submitting pull requests.
-
-[![NPM](https://nodei.co/npm/sails-mongo.png?downloads=true)](http://npmjs.com/package/sails-mongo)
-
-
 #### Development and Test
 
 This repository includes a Docker Compose file that helps setting up the environment needed to run the test.
@@ -137,18 +129,6 @@ For more information, check [MongoDB's Support Policy](https://www.mongodb.com/s
 
 To run tests while developing, you can run `npm run docker`. This command opens a docker instance and opens a shell.
 From there you can run `npm test` to run the tests as many times as you need.
-
-
-#### Special thanks
-
-Thanks so much to Ted Kulp ([@tedkulp](https://twitter.com/tedkulp)) and Robin Persson ([@prssn](https://twitter.com/prssn)) for building the first version of this adapter back in 2013.  Since then, it has evolved into a core adapter within the framework.
-
-
-## Bugs &nbsp; [![NPM version](https://badge.fury.io/js/sails-mongo.svg)](http://npmjs.com/package/sails-mongo)
-
-To report a bug, [click here](http://sailsjs.com/bugs).
-
-
 
 ## License
 
