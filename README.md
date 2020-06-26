@@ -16,10 +16,49 @@ Sails.js/Waterline adapter for MongoDB. (See [compatibility](#compatibility) for
 To install this adapter, run:
 
 ```bash
-$ npm install sails-mongo
+$ npm install @adoric/sails-mongo
 ```
 
 Then [connect the adapter](http://sailsjs.com/documentation/reference/configuration/sails-config-datastores) to one or more of your app's datastores.
+
+## Transactions
+
+We have upgrade [mongodb](https://www.npmjs.com/package/mongodb) to 3.5.9
+Will think about Waterline
+Example works with Native MongoDb
+
+```
+  const { manager } = sails.getDatastore(datastoreName);
+
+  const { client } = manager;
+
+  // Step 1: Start a Client Session
+  const session = client.startSession();
+
+  // Step 2: Optional. Define options to use for the transaction
+  const transactionOptions = {
+    readPreference: 'primary',
+    readConcern: { level: 'local' },
+    writeConcern: { w: 'majority' }
+  };
+
+  // Step 3: Use withTransaction to start a transaction, execute the callback, and commit (or abort on error)
+  // Note: The callback for withTransaction MUST be async and/or return a Promise.
+  try {
+    await session.withTransaction(async () => {
+      const coll1 = client.db('mydb1').collection('foo');
+      const coll2 = client.db('mydb2').collection('bar');
+
+      // Important:: You must pass the session to the operations
+
+      await coll1.insertOne({ abc: 1 }, { session });
+      await coll2.insertOne({ xyz: 999 }, { session });
+    }, transactionOptions);
+  } finally {
+    await session.endSession();
+    await client.close();
+  }
+```
 
 ## Usage
 

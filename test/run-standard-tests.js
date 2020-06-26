@@ -4,12 +4,10 @@
  * Module dependencies
  */
 
-var util = require('util');
-var TestRunner = require('waterline-adapter-tests');
-var packageMD = require('../package.json');
-var Adapter = require('../');
-
-
+const util = require('util');
+const TestRunner = require('waterline-adapter-tests');
+const packageMD = require('../package.json');
+const Adapter = require('..');
 
 /**
  * Run integration tests
@@ -21,68 +19,67 @@ var Adapter = require('../');
  * are tested. (e.g. `queryable`, `semantic`, etc.)
  */
 
-
 // Sanity check.
 try {
-  packageMD.waterlineAdapter.interfaces;
+    // eslint-disable-next-line no-unused-expressions
+    packageMD.waterlineAdapter.interfaces;
 } catch (e) {
-  throw new Error(
-    '\n' +
-    'Could not read supported interfaces from `waterlineAdapter.interfaces`' + '\n' +
-    'in this adapter\'s `package.json` file ::' + '\n' +
-    util.inspect(e)
-  );
+    throw new Error(
+        `${`
+Could not read supported interfaces from \`waterlineAdapter.interfaces\`
+in this adapter's \`package.json\` file ::
+`}${
+            util.inspect(e)}`,
+    );
 }
 
-
 // Log an intro message.
-console.log('Testing `' + packageMD.name + '`, a Sails/Waterline adapter.');
-console.log('Running `waterline-adapter-tests` against ' + packageMD.waterlineAdapter.interfaces.length + ' interface(s) and ' + packageMD.waterlineAdapter.features.length + ' feature(s)...');
-console.log('|   Interfaces:       ' + (packageMD.waterlineAdapter.interfaces.join(', ') || 'n/a') + '');
-console.log('|   Extra features:   ' + ((packageMD.waterlineAdapter.features || []).join(', ') || 'n/a') + '');
+console.log(`Testing \`${packageMD.name}\`, a Sails/Waterline adapter.`);
+console.log(`Running \`waterline-adapter-tests\` against ${packageMD.waterlineAdapter.interfaces.length} interface(s) and ${packageMD.waterlineAdapter.features.length} feature(s)...`);
+console.log(`|   Interfaces:       ${packageMD.waterlineAdapter.interfaces.join(', ') || 'n/a'}`);
+console.log(`|   Extra features:   ${(packageMD.waterlineAdapter.features || []).join(', ') || 'n/a'}`);
 console.log();
 console.log('> More info about building Waterline adapters:');
 console.log('> http://sailsjs.com/docs/concepts/extending-sails/adapters/custom-adapters');
 
-
 // Ensure a `url` was specified.
 // (http://sailsjs.com/config/datastores#?the-connection-url)
 if (!process.env.WATERLINE_ADAPTER_TESTS_URL) {
-  console.warn();
-  console.warn('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
-  console.warn('Running using default test MongoDB url: mongo://localhost/testdb');
-  console.warn();
-  console.warn('Tip: You can use an environment variable to configure this.');
-  console.warn('For example:');
-  console.warn('```');
-  console.warn('    WATERLINE_ADAPTER_TESTS_URL=root@localhost/testdb npm test');
-  console.warn('```');
-  console.warn('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
-}//-•
-
+    console.warn();
+    console.warn('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
+    console.warn('Running using default test MongoDB url: mongo://localhost/testdb');
+    console.warn();
+    console.warn('Tip: You can use an environment variable to configure this.');
+    console.warn('For example:');
+    console.warn('```');
+    console.warn('    WATERLINE_ADAPTER_TESTS_URL=root@localhost/testdb npm test');
+    console.warn('```');
+    console.warn('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
+}// -•
 
 // Use the `waterline-adapter-tests` module to
 // run mocha tests against the specified interfaces
 // of the currently-implemented Waterline adapter API.
+// eslint-disable-next-line no-new
 new TestRunner({
 
-  // Load the adapter module.
-  adapter: Adapter,
+    // Load the adapter module.
+    adapter: Adapter,
 
-  // Adapter config to use for tests.
-  config: {
-    url: process.env.WATERLINE_ADAPTER_TESTS_URL || 'localhost/testdb'
-  },
+    // Adapter config to use for tests.
+    config: {
+        url: process.env.WATERLINE_ADAPTER_TESTS_URL || 'localhost:27017/testdb',
+    },
 
-  // The set of adapter interface layers & specific features to test against.
-  interfaces: packageMD.waterlineAdapter.interfaces,
-  features: packageMD.waterlineAdapter.features,
+    // The set of adapter interface layers & specific features to test against.
+    interfaces: packageMD.waterlineAdapter.interfaces,
+    features: packageMD.waterlineAdapter.features,
 
-  // Mocha opts
-  mocha: {
-    bail: true,
-    reporter: 'spec'
-  }
+    // Mocha opts
+    mocha: {
+        bail: true,
+        reporter: 'spec',
+    },
 
 });
 
@@ -100,4 +97,3 @@ new TestRunner({
 // to an adapter maintainer @ http://sailsjs.com/support.
 //
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-

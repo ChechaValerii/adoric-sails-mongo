@@ -1,37 +1,38 @@
-var createManager = require('machine').build(require('../../').createManager);
-var destroyManager = require('machine').build(require('../../').destroyManager);
+const machine = require('machine');
 
-describe('Connectable ::', function() {
-  describe('Destroy Manager', function() {
-    var manager;
+const createManager = machine.build(require('../..').createManager);
+const destroyManager = machine.build(require('../..').destroyManager);
 
-    // Create a manager
-    before(function(done) {
-      // Needed to dynamically get the host using the docker container
-      var host = process.env.WATERLINE_ADAPTER_TESTS_HOST || 'localhost';
+describe('Connectable ::', () => {
+    describe('Destroy Manager', () => {
+        let manager;
 
-      createManager({
-        connectionString: 'mongodb://' + host + ':27017/mppg'
-      })
-      .exec(function(err, report) {
-        if (err) {
-          return done(err);
-        }
+        // Create a manager
+        before((done) => {
+            // Needed to dynamically get the host using the docker container
+            const host = process.env.WATERLINE_ADAPTER_TESTS_HOST || 'localhost';
 
-        manager = report.manager;
-        return done();
-      });
+            createManager({
+                connectionString: `mongodb://${host}:27017/mppg`,
+            })
+                .exec((err, report) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    manager = report.manager;
+                    return done();
+                });
+        });
+
+        it('should successfully destroy the manager', (done) => {
+            destroyManager({
+                manager,
+            })
+                .exec((err) => {
+                    if (err) { return done(err); }
+                    return done();
+                });
+        });
     });
-
-
-    it('should successfully destroy the manager', function(done) {
-      destroyManager({
-        manager: manager
-      })
-      .exec(function(err) {
-        if (err) { return done(err); }
-        return done();
-      });
-    });
-  });
 });

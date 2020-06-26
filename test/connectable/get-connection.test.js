@@ -1,42 +1,44 @@
-var assert = require('assert');
-var createManager = require('machine').build(require('../../').createManager);
-var getConnection = require('machine').build(require('../../').getConnection);
+const assert = require('assert');
+const machine = require('machine');
 
-describe('Connectable ::', function() {
-  describe('Get Connection', function() {
-    var manager;
+const createManager = machine.build(require('../..').createManager);
+const getConnection = machine.build(require('../..').getConnection);
 
-    // Create a manager
-    before(function(done) {
-      // Needed to dynamically get the host using the docker container
-      var host = process.env.WATERLINE_ADAPTER_TESTS_HOST || 'localhost';
+describe('Connectable ::', () => {
+    describe('Get Connection', () => {
+        let manager;
 
-      createManager({
-        connectionString: 'mongodb://' + host + ':27017/mppg'
-      })
-      .exec(function(err, report) {
-        if (err) {
-          return done(err);
-        }
+        // Create a manager
+        before((done) => {
+            // Needed to dynamically get the host using the docker container
+            const host = process.env.WATERLINE_ADAPTER_TESTS_HOST || 'localhost';
 
-        manager = report.manager;
-        return done();
-      });
+            createManager({
+                connectionString: `mongodb://${host}:27017/mppg`,
+            })
+                .exec((err, report) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    manager = report.manager;
+                    return done();
+                });
+        });
+
+        it('should successfully return a Mongo Server instance', (done) => {
+            getConnection({
+                manager,
+            })
+                .exec((err, report) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    try { assert(report.connection); } catch (e) { return done(e); }
+
+                    return done();
+                });
+        });
     });
-
-    it('should successfully return a Mongo Server instance', function(done) {
-      getConnection({
-        manager: manager
-      })
-      .exec(function(err, report) {
-        if (err) {
-          return done(err);
-        }
-
-        try { assert(report.connection); } catch (e) { return done(e); }
-
-        return done();
-      });
-    });
-  });
 });

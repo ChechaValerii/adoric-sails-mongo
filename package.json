@@ -1,10 +1,15 @@
 {
-  "name": "sails-mongo",
-  "version": "1.2.1",
+  "name": "@adoric/sails-mongo",
+  "version": "2.3.1",
   "description": "Mongo DB adapter for Sails.js/Waterline.",
   "main": "./lib",
+  "author": {
+    "name": "Checha Valerii",
+    "email": "valeriy@adoric.com",
+    "url": "https://github.com/ChechaValerii"
+  },
   "scripts": {
-    "test": "npm run lint && npm run custom-tests",
+    "test": "npm run custom-tests",
     "custom-tests": "node node_modules/mocha/bin/mocha test/run-adapter-specific-tests && node node_modules/mocha/bin/mocha test/connectable/ && node node_modules/mocha/bin/mocha test/run-standard-tests",
     "lint": "node node_modules/eslint/bin/eslint . --max-warnings=0",
     "start-mongodb": "docker-compose up -d mongo",
@@ -27,20 +32,26 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git://github.com/balderdashy/sails-mongo.git"
+    "url": "git@github.com:ChechaValerii/sails-mongo.git"
   },
   "dependencies": {
     "@sailshq/lodash": "^3.10.4",
     "async": "3.2.0",
     "flaverr": "^1.10.0",
-    "machine": "^15.2.2",
-    "mongodb": "2.2.25",
+    "machine": "15.2.2",
+    "mongodb": "3.5.9",
     "qs": "6.9.4"
   },
   "devDependencies": {
     "benchmark": "2.1.4",
-    "eslint": "4.19.1",
-    "mocha": "3.0.2",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "mocha": "8.0.1",
     "waterline": "^0.13.6",
     "waterline-adapter-tests": "^1.0.1",
     "waterline-utils": "^1.4.2"
@@ -65,7 +76,6 @@
       "migratable"
     ],
     "machineDir": "lib/private/machines/",
-    "exportStyle": "dryDictionary",
-    "testsUrl": "https://travis-ci.org/balderdashy/sails-mongo"
+    "exportStyle": "dryDictionary"
   }
 }
