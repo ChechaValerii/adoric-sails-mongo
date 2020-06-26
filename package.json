@@ -1,6 +1,6 @@
 {
   "name": "@adoric/sails-mongo",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Mongo DB adapter for Sails.js/Waterline.",
   "main": "./lib",
   "author": {
@@ -32,29 +32,29 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ChechaValerii/sails-mongo.git"
+    "url": "git@github.com:ChechaValerii/adoric-sails-mongo.git"
   },
   "dependencies": {
-    "@sailshq/lodash": "^3.10.4",
+    "@sailshq/lodash": "3.10.4",
     "async": "3.2.0",
-    "flaverr": "^1.10.0",
+    "flaverr": "1.10.0",
     "machine": "15.2.2",
     "mongodb": "3.5.9",
     "qs": "6.9.4"
   },
   "devDependencies": {
     "benchmark": "2.1.4",
-    "eslint": "^7.2.0",
-    "eslint-config-airbnb": "^18.2.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb": "18.2.0",
     "eslint-config-airbnb-base": "14.2.0",
-    "eslint-plugin-import": "^2.21.2",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
     "mocha": "8.0.1",
-    "waterline": "^0.13.6",
-    "waterline-adapter-tests": "^1.0.1",
-    "waterline-utils": "^1.4.2"
+    "waterline": "0.13.6",
+    "waterline-adapter-tests": "1.0.1",
+    "waterline-utils": "1.4.2"
   },
   "waterlineAdapter": {
     "interfaces": [
