@@ -1,13 +1,14 @@
 {
   "name": "@adoric/sails-mongo",
-  "version": "2.3.3",
+  "version": "2.3.36",
   "description": "Mongo DB adapter for Sails.js/Waterline.",
   "main": "./lib",
   "author": {
     "name": "Checha Valerii",
     "email": "valeriy@adoric.com",
-    "url": "https://github.com/ChechaValerii"
+    "url": "git@github.com:ChechaValerii/adoric-sails-mongo.git"
   },
+  "homepage": "https://adoric.com",
   "scripts": {
     "test": "npm run custom-tests",
     "custom-tests": "node node_modules/mocha/bin/mocha test/run-adapter-specific-tests && node node_modules/mocha/bin/mocha test/connectable/ && node node_modules/mocha/bin/mocha test/run-standard-tests",

@@ -1,10 +1,11 @@
-[![Node.js and MongoDB on Sails.js/Waterline](https://camo.githubusercontent.com/9e49073459ed4e0e2687b80eaf515d87b0da4a6b/687474703a2f2f62616c64657264617368792e6769746875622e696f2f7361696c732f696d616765732f6c6f676f2e706e67)](http://sailsjs.com)
+![https://adoric.com](https://i.imgur.com/55dd7EG.png)
 
 # @adoric/sails-mongo
 
 Sails.js/Waterline adapter for MongoDB. (See [compatibility](#compatibility) for more details.)
 
 > Support transactions API
+>
 > Provides easy access to MongoDB from Sails.js & Waterline.
 > This module is a Sails/Waterline adapter maintained by the core team.  Its goal is to provide robust, easy-to-use access to MongoDB from Sails.js and Waterline.
 >
@@ -136,6 +137,6 @@ This [core adapter](http://sailsjs.com/documentation/concepts/extending-sails/ad
 
 As for [Waterline](http://waterlinejs.org) and the [Sails framework](http://sailsjs.com)?  They're free and open-source under the [MIT License](http://sailsjs.com/license).
 
-&copy; [The Sails Co.](http://sailsjs.com/about)
+&copy; [adoric.com](https://adoric.com/)
 
 ![image_squidhome@2x.png](http://i.imgur.com/RIvu9.png)
